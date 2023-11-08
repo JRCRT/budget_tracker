@@ -8,7 +8,10 @@ class LabeledTextField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label),
+        Text(
+          label,
+          style: Theme.of(context).textTheme.headlineMedium,
+        ),
         TextFormField(
           decoration: InputDecoration(
               contentPadding: const EdgeInsets.all(10),
@@ -19,7 +22,7 @@ class LabeledTextField extends StatelessWidget {
               enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(7.0),
                   borderSide:
-                      const BorderSide(color: Colors.black, width: 2.0))),
+                      const BorderSide(color: Colors.black54, width: 2.0))),
         )
       ],
     );
