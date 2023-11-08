@@ -34,7 +34,7 @@ class DashboardScreen extends StatelessWidget {
                   subTitle: 'PHP 8,000',
                   color: Colors.redAccent),
               const SizedBox(height: 10),
-              TransactionItem()
+              TransactionItem(context)
             ],
           ),
         ),
@@ -42,19 +42,45 @@ class DashboardScreen extends StatelessWidget {
     );
   }
 
-  Widget TransactionItem() {
+  Widget TransactionItem(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(10),
       width: double.infinity,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(7)),
-        color: Colors.blue,
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+              color: Colors.grey, blurRadius: 1, offset: Offset(0.0, 0.2)),
+        ],
       ),
-      child: const Row(children: [
-        Expanded(flex: 1, child: Icon(Icons.food_bank, color: Colors.white)),
-        Expanded(flex: 2, child: Text('Food')),
-        Expanded(flex: 2, child: Text('10/26/2023')),
-        Expanded(flex: 1, child: Text('-PHP 600'))
+      child: Row(children: [
+        const Expanded(
+            flex: 1,
+            child: CircleAvatar(
+                backgroundColor: Colors.blue,
+                child: Icon(Icons.food_bank, color: Colors.white))),
+        Expanded(
+            flex: 1,
+            child: Text(
+              'Food',
+              style: Theme.of(context).textTheme.bodyLarge,
+            )),
+        Expanded(
+            flex: 2,
+            child: Text(
+              '10/26/2023',
+              style: Theme.of(context).textTheme.bodyLarge,
+            )),
+        Expanded(
+            flex: 1,
+            child: Text(
+              '-PHP 600',
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge!
+                  .copyWith(color: Colors.redAccent),
+            ))
       ]),
     );
   }
