@@ -6,8 +6,10 @@ class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       resizeToAvoidBottomInset: false,
       body: SafeArea(
+        bottom: false,
         child: Container(
           padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Column(
@@ -33,12 +35,52 @@ class DashboardScreen extends StatelessWidget {
                   title: 'Today\'s Expenses',
                   subTitle: 'PHP 8,000',
                   color: Colors.redAccent),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
+              Text(
+                'Today\'s Expenses',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              const SizedBox(
+                height: 8,
+              ),
               TransactionItem(context)
             ],
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.add), onPressed: () => {}),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomAppBar(
+          shadowColor: Colors.grey,
+          clipBehavior: Clip.antiAlias,
+          shape: const CircularNotchedRectangle(),
+          elevation: 10,
+          notchMargin: 6.5,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                    onPressed: () => {},
+                    icon: const Icon(Icons.dashboard_outlined,
+                        color: Colors.blue)),
+                IconButton(
+                    onPressed: () => {},
+                    icon: const Icon(Icons.payment, color: Colors.blue)),
+                const SizedBox(
+                  width: 80,
+                ),
+                IconButton(
+                    onPressed: () => {},
+                    icon: const Icon(Icons.list_alt, color: Colors.blue)),
+                IconButton(
+                    onPressed: () => {},
+                    icon: const Icon(Icons.settings, color: Colors.blue)),
+              ],
+            ),
+          )),
     );
   }
 

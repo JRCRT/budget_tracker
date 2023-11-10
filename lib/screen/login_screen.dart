@@ -1,10 +1,21 @@
 import 'package:budget_tracker/common/button.dart';
+import 'package:budget_tracker/model/expenses_model.dart';
 import 'package:flutter/material.dart';
 import 'package:budget_tracker/common/labeled_textfield.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+void printExpense() {
+  const foodExpenses = Expenses('Food', 200.00);
+  print(foodExpenses.item);
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
@@ -25,6 +36,7 @@ class LoginScreen extends StatelessWidget {
                 width: double.infinity,
                 height: 45,
                 child: Button(
+                  onPressed: printExpense,
                   title: "Login",
                 ))
           ],
