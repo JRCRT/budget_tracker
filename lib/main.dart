@@ -1,6 +1,7 @@
+import 'package:budget_tracker/screen/budget_screen.dart';
 import 'package:budget_tracker/screen/dashboard_screen.dart';
+import 'package:budget_tracker/screen/layout_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:budget_tracker/screen/login_screen.dart';
 import 'package:budget_tracker/config/theme.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: theme(),
-      home: const DashboardScreen(),
+      home: const LayoutScreen(),
     );
   }
 }

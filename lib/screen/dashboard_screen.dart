@@ -1,91 +1,87 @@
+import 'package:budget_tracker/common/button.dart';
+import 'package:budget_tracker/common/custom_scaffold.dart';
+import 'package:budget_tracker/common/labeled_textfield.dart';
+import 'package:budget_tracker/util/helper.dart';
 import 'package:flutter/material.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
 
+  void showAddExpensesModal(BuildContext context) {
+    showBottomModal(
+        context,
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const LabeledTextField(label: 'Item'),
+            const SizedBox(
+              height: 10,
+            ),
+            const LabeledTextField(
+              label: 'Amount',
+              textInputType: TextInputType.number,
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            SizedBox(
+                width: double.infinity,
+                height: 45,
+                child: Button(
+                  title: 'Add',
+                  onPressed: () {},
+                ))
+          ],
+        ));
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBody: true,
-      resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        bottom: false,
-        child: Container(
-          padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Hello Jerico!',
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Card(
-                  context: context,
-                  title: 'Remaining Balance',
-                  subTitle: 'PHP 10,000',
-                  color: Theme.of(context).primaryColor),
-              const SizedBox(
-                height: 8,
-              ),
-              Card(
-                  context: context,
-                  title: 'Today\'s Expenses',
-                  subTitle: 'PHP 8,000',
-                  color: Colors.redAccent),
-              const SizedBox(height: 20),
-              Text(
-                'Today\'s Expenses',
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              TransactionItem(context)
-            ],
-          ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Hello Jerico!',
+          style: Theme.of(context).textTheme.titleLarge,
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.add), onPressed: () => {}),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomAppBar(
-          shadowColor: Colors.grey,
-          clipBehavior: Clip.antiAlias,
-          shape: const CircularNotchedRectangle(),
-          elevation: 10,
-          notchMargin: 6.5,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                    onPressed: () => {},
-                    icon: const Icon(Icons.dashboard_outlined,
-                        color: Colors.blue)),
-                IconButton(
-                    onPressed: () => {},
-                    icon: const Icon(Icons.payment, color: Colors.blue)),
-                const SizedBox(
-                  width: 80,
-                ),
-                IconButton(
-                    onPressed: () => {},
-                    icon: const Icon(Icons.list_alt, color: Colors.blue)),
-                IconButton(
-                    onPressed: () => {},
-                    icon: const Icon(Icons.settings, color: Colors.blue)),
-              ],
-            ),
-          )),
+        const SizedBox(
+          height: 20,
+        ),
+        Card(
+            context: context,
+            title: 'Remaining Balance',
+            subTitle: 'PHP 10,000',
+            color: Theme.of(context).primaryColor),
+        const SizedBox(
+          height: 8,
+        ),
+        Card(
+            context: context,
+            title: 'Today\'s Expenses',
+            subTitle: 'PHP 8,000',
+            color: Colors.redAccent),
+        const SizedBox(height: 20),
+        Text(
+          'Today\'s Expenses',
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
+        const SizedBox(
+          height: 8,
+        ),
+        Expanded(
+          child: ListView.builder(
+              itemCount: 10,
+              itemBuilder: (context, index) {
+                return TransactionItem(context);
+              }),
+        )
+      ],
     );
   }
 
   Widget TransactionItem(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 2),
       padding: const EdgeInsets.all(10),
       width: double.infinity,
       decoration: const BoxDecoration(
